@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+效果图
+![效果图](https://raw.githubusercontent.com/LiXiaoRan/PicGoBed/master/img/20191202190018.png)
 
-## Available Scripts
+## 矩形
+矩形
+就像你能联想到的，rect元素会在屏幕上绘制一个矩形 。其实只要6个基本属性就可以控制它在屏幕上的位置和形状。 上面的图例中最先展示了2个矩形，虽然这有点冗余了。右边的那个图形设置了rx和ry属性用来控制圆角。如果没有设置圆角，则默认为0。
+```xml
+<rect x="10" y="10" width="30" height="30"/>
+<rect x="60" y="10" rx="10" ry="10" width="30" height="30"/>
+```
+x
+矩形左上角的x位置
+y
+矩形左上角的y位置
+width
+矩形的宽度
+height
+矩形的高度
+rx
+圆角的x方位的半径
+ry
+圆角的y方位的半径
 
-In the project directory, you can run:
+## 圆形 
+正如你猜到的，circle元素会在屏幕上绘制一个圆形。它只有3个属性用来设置圆形。
+```xml
+<circle cx="25" cy="75" r="20"/>
+```
+r
+圆的半径
+cx
+圆心的x位置
+cy
+圆心的y位置
 
-### `npm start`
+## 椭圆
+Ellipse 是circle元素更通用的形式，你可以分别缩放圆的x半径和y半径（通常数学家称之为长轴半径和短轴半径）。
+```xml
+<ellipse cx="75" cy="75" rx="20" ry="5"/>
+```
+rx
+椭圆的x半径
+ry
+椭圆的y半径
+cx
+椭圆中心的x位置
+cy
+椭圆中心的y位置
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 线条
+Line 绘制直线。它取两个点的位置作为属性，指定这条线的起点和终点位置。
+```xml
+<line x1="10" x2="50" y1="110" y2="150"/>
+```
+x1
+起点的x位置
+y1
+起点的y位置
+x2
+终点的x位置
+y2
+终点的y位置
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 折线
+Polyline是一组连接在一起的直线。因为它可以有很多的点，折线的的所有点位置都放在一个points属性中：
+```xml
+<polyline points="60 110, 65 120, 70 115, 75 130, 80 125, 85 140, 90 135, 95 150, 100 145"/>
+```
+points
+点集数列。每个数字用空白、逗号、终止命令符或者换行符分隔开。每个点必须包含2个数字，一个是x坐标，一个是y坐标。所以点列表 (0,0), (1,1) 和(2,2)可以写成这样：“0 0, 1 1, 2 2”。
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 多边形
+polygon和折线很像，它们都是由连接一组点集的直线构成。不同的是，polygon的路径在最后一个点处自动回到第一个点。需要注意的是，矩形也是一种多边形，如果需要更多灵活性的话，你也可以用多边形创建一个矩形。
 
-### `npm run build`
+```xml
+<polygon points="50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180"/>
+```
+points
+点集数列。每个数字用空白符、逗号、终止命令或者换行符分隔开。每个点必须包含2个数字，一个是x坐标，一个是y坐标。所以点列表 (0,0), (1,1) 和(2,2)可以写成这样：“0 0, 1 1, 2 2”。`路径绘制完后闭合图形，所以最终的直线将从位置(2,2)连接到位置(0,0)`。
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 路径
+path可能是SVG中最常见的形状。你可以用path元素绘制矩形（直角矩形或者圆角矩形）、圆形、椭圆、折线形、多边形，以及一些其他的形状，例如贝塞尔曲线、2次曲线等曲线。因为path很强大也很复杂，所以会在下一章进行详细介绍。这里只介绍一个定义路径形状的属性。
+```xml
+<path d="M 20 230 Q 40 205, 50 230 T 90230"/>
+```
+d
+一个点集数列以及其它关于如何绘制路径的信息。
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
