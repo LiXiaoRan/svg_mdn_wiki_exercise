@@ -79,6 +79,31 @@ function basicShape() {
                     />
                 </svg>
             </Card>
+
+            <Card title="Path矩形绘制" className="wrap_svg">
+            <span className="content_text">矩形</span>
+            <svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10 H 90 V 90 H 10 L 10 10" fill="none" stroke="blue"/>
+            
+            <span className="content_text">矩形</span>
+            {/* 通过Z来闭合 */}
+            <path d="M20 20 H 100 V 100 H 20 Z" fill="transparent" stroke="black"/>
+
+            </svg>
+            </Card>
+
+            <Card title="Path曲线命令绘制" className="wrap_svg">
+            <span className="content_text">三次贝塞尔曲线</span>
+            <svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            
+
+
+            </svg>
+            </Card>
+
+            <card>
+
+            </card>
         </div>
     );
 }
