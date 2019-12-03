@@ -430,7 +430,7 @@ function basicShape() {
                     线性渐变:要插入一个线性渐变，你需要在SVG文件的defs元素内部，创建一个linearGradient节点。
                     以上是一个应用了线性渐变的rect元素的示例。线性渐变内部有几个stop
                     结点，这些结点通过指定位置
-                    的offset（偏移）属性和stop-color（颜色中值）属性来说明在渐变的特定位置上应该是什么颜色；可
+                    的offset（偏移）属性和stopColor（颜色中值）属性来说明在渐变的特定位置上应该是什么颜色；可
                     以直接指定这两个属性值，也可以通过CSS来指定他们的值，该例子中混合使用了这两种方法。例如：该示
                     例中指明了渐变开始颜色为红色，到中间位置时变成半透明的黑色，最后变成蓝色。虽然你可以根据需求按
                     照自己的喜好插入很多中间颜色，但是偏移量应该始终从0%开始（或者0也可以，百分号可以扔掉），到100%
@@ -497,8 +497,8 @@ function basicShape() {
                             cy="0.25"
                             r="0.25"
                         >
-                            <stop offset="0%" stop-color="red" />
-                            <stop offset="100%" stop-color="blue" />
+                            <stop offset="0%" stopColor="red" />
+                            <stop offset="100%" stopColor="blue" />
                         </radialGradient>
                     </defs>
                     <rect
@@ -527,7 +527,9 @@ function basicShape() {
                 className="wrap_svg"
                 style={{ width: 500 }}
             >
-                <span>线性渐变和径向渐变都需要一些额外的属性用于描述渐变过程，这里我希望额外提及一个spreadMethod属性，该属性控制了当渐变到达终点的行为，但是此时该对象尚未被填充颜色。这个属性可以有三个值：pad、reflect或repeat。Pad就是目前我们见到的效果，即当渐变到达终点时，最终的偏移颜色被用于填充对象剩下的空间。reflect会让渐变一直持续下去，不过它的效果是与渐变本身是相反的，以100%偏移位置的颜色开始，逐渐偏移到0%位置的颜色，然后再回到100%偏移位置的颜色。repeat也会让渐变继续，但是它不会像reflect那样反向渐变，而是跳回到最初的颜色然后继续渐变。</span>
+                <span>
+                    线性渐变和径向渐变都需要一些额外的属性用于描述渐变过程，这里我希望额外提及一个spreadMethod属性，该属性控制了当渐变到达终点的行为，但是此时该对象尚未被填充颜色。这个属性可以有三个值：pad、reflect或repeat。Pad就是目前我们见到的效果，即当渐变到达终点时，最终的偏移颜色被用于填充对象剩下的空间。reflect会让渐变一直持续下去，不过它的效果是与渐变本身是相反的，以100%偏移位置的颜色开始，逐渐偏移到0%位置的颜色，然后再回到100%偏移位置的颜色。repeat也会让渐变继续，但是它不会像reflect那样反向渐变，而是跳回到最初的颜色然后继续渐变。
+                </span>
                 <svg
                     width="220"
                     height="220"
@@ -544,8 +546,8 @@ function basicShape() {
                             fy="0.75"
                             spreadMethod="pad"
                         >
-                            <stop offset="0%" stop-color="red" />
-                            <stop offset="100%" stop-color="blue" />
+                            <stop offset="0%" stopColor="red" />
+                            <stop offset="100%" stopColor="blue" />
                         </radialGradient>
                         <radialGradient
                             id="GradientRepeat"
@@ -556,8 +558,8 @@ function basicShape() {
                             fy="0.75"
                             spreadMethod="repeat"
                         >
-                            <stop offset="0%" stop-color="red" />
-                            <stop offset="100%" stop-color="blue" />
+                            <stop offset="0%" stopColor="red" />
+                            <stop offset="100%" stopColor="blue" />
                         </radialGradient>
                         <radialGradient
                             id="GradientReflect"
@@ -568,8 +570,8 @@ function basicShape() {
                             fy="0.75"
                             spreadMethod="reflect"
                         >
-                            <stop offset="0%" stop-color="red" />
-                            <stop offset="100%" stop-color="blue" />
+                            <stop offset="0%" stopColor="red" />
+                            <stop offset="100%" stopColor="blue" />
                         </radialGradient>
                     </defs>
 
@@ -605,8 +607,8 @@ function basicShape() {
                         x="15"
                         y="30"
                         fill="white"
-                        font-family="sans-serif"
-                        font-size="12pt"
+                        fontFamily="sans-serif"
+                        fontSize="12pt"
                     >
                         Pad
                     </text>
@@ -614,8 +616,8 @@ function basicShape() {
                         x="15"
                         y="140"
                         fill="white"
-                        font-family="sans-serif"
-                        font-size="12pt"
+                        fontFamily="sans-serif"
+                        fontSize="12pt"
                     >
                         Repeat
                     </text>
@@ -623,10 +625,93 @@ function basicShape() {
                         x="125"
                         y="140"
                         fill="white"
-                        font-family="sans-serif"
-                        font-size="12pt"
+                        fontFamily="sans-serif"
+                        fontSize="12pt"
                     >
                         Reflect
+                    </text>
+                </svg>
+            </Card>
+
+            <Card
+                title="patterns（图案）"
+                className="wrap_svg"
+                style={{ width: 500 }}
+            >
+                <span>
+                    在pattern元素内部你可以包含任何之前包含过的其它基本形状，并且每个形状都可以使用之前学习过的任何样式样式化，
+                    包括渐变和半透明。这里我们在pattern中绘制两个矩形（两个矩形互相重叠，一个矩形是另一个矩形大小的二倍，且用于
+                    填充整个pattern）和一个圆。在pattern元素内部你可以包含任何之前包含过的其它基本形状，并且每个形状都可以使用
+                    之前学习过的任何样式样式化，包括渐变和半透明。这里我们在pattern中绘制两个矩形（两个矩形互相重叠，一个矩形是
+                    另一个矩形大小的二倍，且用于填充整个pattern）和一个圆。
+                </span>
+                <svg className="inner_svg">
+                    <defs>
+                        <linearGradient id="Gradient1">
+                            <stop offset="5%" stopColor="white" />
+                            <stop offset="95%" stopColor="blue" />
+                        </linearGradient>
+                        <linearGradient
+                            id="Gradient2"
+                            x1="0"
+                            x2="0"
+                            y1="0"
+                            y2="1"
+                        >
+                            <stop offset="5%" stopColor="red" />
+                            <stop offset="95%" stopColor="yellow" />
+                        </linearGradient>
+
+                        <pattern
+                            id="Pattern"
+                            x="0"
+                            y="0"
+                            width=".25"
+                            height=".25"
+                        >
+                            <rect
+                                x="0"
+                                y="0"
+                                width="50"
+                                height="50"
+                                fill="skyblue"
+                            />
+                            <rect
+                                x="0"
+                                y="0"
+                                width="25"
+                                height="25"
+                                fill="url(#Gradient2)"
+                            />
+                            <circle
+                                cx="25"
+                                cy="25"
+                                r="20"
+                                fill="url(#Gradient1)"
+                                fillOpacity="0.5"
+                            />
+                        </pattern>
+                    </defs>
+
+                    <rect
+                        fill="url(#Pattern)"
+                        stroke="black"
+                        x="0"
+                        y="0"
+                        width="200"
+                        height="200"
+                    />
+                </svg>
+            </Card>
+            <Card
+                title="字体 Text"
+                className="wrap_svg"
+                style={{ width: 500 }}
+            >
+                <svg className=".inner_svg">
+                    <path id="my_path" stroke="skyblue"  fill="transparent" d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" />
+                    <text>
+                        <textPath  xlinkHref="#my_path">This text follows a curve.</textPath>
                     </text>
                 </svg>
             </Card>
