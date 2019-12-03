@@ -707,7 +707,7 @@ function basicShape() {
                 <span>
                     跟随路径的文字，要注意xlink：href在react的jsx中应该写成xlinkHref
                 </span>
-                <svg className=".inner_svg">
+                <svg className="inner_svg">
                     <path
                         id="my_path"
                         stroke="skyblue"
@@ -733,7 +733,7 @@ function basicShape() {
                     然而，该rect不会被绘制。它的象素数据将用来确定：圆形的哪些像素需要最终呈现出来。因为矩形只覆盖了圆形的上半部分，所以下半部分将消失了：
                 </span>
                 <svg
-                    className=".inner_svg"
+                    className="inner_svg"
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
                 >
@@ -755,7 +755,7 @@ function basicShape() {
                     你看到有一个绿色填充的矩形在底层，一个红色填充的矩形在上层。后者有一个mask属性指向一个mask元素。mask元素
                     的内容是一个单一的rect元素，它填充了一个透明到白色的渐变。作为红色矩形继承mark内容的alpha值（透明度）的结果，我们看到一个从绿色到红色渐变的输出：
                 </span>
-                <svg className=".inner_svg">
+                <svg className="inner_svg">
                     <defs>
                         <linearGradient id="Gradient">
                             <stop
@@ -788,9 +788,37 @@ function basicShape() {
                         fill="red"
                         mask="url(#Mask)"
                     />
-
-                    
                 </svg>
+
+                <span>
+                    opacity:填充和描边还有两个属性是fill-opacity和stroke-opacity，分别用来控制填充和描边的不透明度。需要注意的是描边将绘制在填充的上面。因此，如果你在一个元素上设置了描边透明度，但它同时设有填充，则描边的一半应用填充色，另一半将应用背景色。
+                </span>
+                <svg className="inner_svg">
+                    <rect x="0" y="0" width="200" height="200" fill="skyblue" />
+                    <circle
+                        cx="100"
+                        cy="75"
+                        r="50"
+                        stroke="yellow"
+                        strokeWidth="40"
+                        strokeOpacity=".5"
+                        fill="red"
+                    />
+                </svg>
+                <span>这个示例，红色的圆形在蓝色的背景上，黄色描边设置为50%不透明度，导到双色描边的</span>
+            </Card>
+            <Card
+             title="嵌入光栅图像 image"
+                className="wrap_svg"
+                style={{ width: 500 }}
+            >
+            <svg className="inner_svg" height="200">
+            <image 
+            x="90" y="-65" width="128" height="146" transform="rotate(45)"
+            xlinkHref="https://developer.mozilla.org/files/3238/imagedemo.png"/>
+
+            </svg>
+
             </Card>
         </div>
     );
