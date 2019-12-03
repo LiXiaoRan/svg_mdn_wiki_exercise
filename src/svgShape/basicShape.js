@@ -463,7 +463,7 @@ function basicShape() {
 
                     <rect
                         x="10"
-                        y="120"
+                        y="40"
                         rx="15"
                         ry="15"
                         width="100"
