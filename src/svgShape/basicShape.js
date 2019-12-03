@@ -703,16 +703,93 @@ function basicShape() {
                     />
                 </svg>
             </Card>
+            <Card title="字体 Text" className="wrap_svg" style={{ width: 500 }}>
+                <span>
+                    跟随路径的文字，要注意xlink：href在react的jsx中应该写成xlinkHref
+                </span>
+                <svg className=".inner_svg">
+                    <path
+                        id="my_path"
+                        stroke="skyblue"
+                        fill="transparent"
+                        d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80"
+                    />
+                    <text>
+                        <textPath xlinkHref="#my_path">
+                            This text follows a curve.
+                        </textPath>
+                    </text>
+                </svg>
+            </Card>
+
             <Card
-                title="字体 Text"
+                title="剪切和遮罩 clipPath和mask"
                 className="wrap_svg"
                 style={{ width: 500 }}
             >
+                <span>
+                    创建剪切:在(100,100)创建一个圆形，半径是100。属性clip-path引用了一个带单个rect
+                    元素的clipPath元素。它内部的这个矩形将把画布的上半部分涂黑。注意，clipPath元素经常放在一个defs元素内。
+                    然而，该rect不会被绘制。它的象素数据将用来确定：圆形的哪些像素需要最终呈现出来。因为矩形只覆盖了圆形的上半部分，所以下半部分将消失了：
+                </span>
+                <svg
+                    className=".inner_svg"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <clipPath id="cut_off_bottom">
+                            <rect x="0" y="0" width="200" height="100" />
+                        </clipPath>
+                    </defs>
+                    <circle
+                        cx="100"
+                        cy="100"
+                        r="100"
+                        fill="black"
+                        clipPath="url(#cut_off_bottom)"
+                    />
+                </svg>
+                <span>
+                    遮罩：遮罩的效果最令人印象深刻的是表现为一个渐变。如果你想要让一个元素淡出，你可以利用遮罩效果实现这一点。
+                    你看到有一个绿色填充的矩形在底层，一个红色填充的矩形在上层。后者有一个mask属性指向一个mask元素。mask元素
+                    的内容是一个单一的rect元素，它填充了一个透明到白色的渐变。作为红色矩形继承mark内容的alpha值（透明度）的结果，我们看到一个从绿色到红色渐变的输出：
+                </span>
                 <svg className=".inner_svg">
-                    <path id="my_path" stroke="skyblue"  fill="transparent" d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" />
-                    <text>
-                        <textPath  xlinkHref="#my_path">This text follows a curve.</textPath>
-                    </text>
+                    <defs>
+                        <linearGradient id="Gradient">
+                            <stop
+                                stopColor="white"
+                                offset="0"
+                                stopOpacity="0"
+                            />
+                            <stop
+                                stopColor="white"
+                                offset="1"
+                                stopOpacity="1"
+                            />
+                        </linearGradient>
+                        <mask id="Mask">
+                            <rect
+                                x="0"
+                                y="0"
+                                width="200"
+                                height="200"
+                                fill="url(#Gradient)"
+                            />
+                        </mask>
+                    </defs>
+                    <rect x="0" y="0" width="200" height="200" fill="green" />
+                    <rect
+                        x="0"
+                        y="0"
+                        width="200"
+                        height="200"
+                        fill="red"
+                        mask="url(#Mask)"
+                    />
+
+                    
                 </svg>
             </Card>
         </div>
