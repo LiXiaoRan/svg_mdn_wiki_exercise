@@ -805,20 +805,31 @@ function basicShape() {
                         fill="red"
                     />
                 </svg>
-                <span>这个示例，红色的圆形在蓝色的背景上，黄色描边设置为50%不透明度，导到双色描边的</span>
+                <span>
+                    这个示例，红色的圆形在蓝色的背景上，黄色描边设置为50%不透明度，导到双色描边的
+                </span>
             </Card>
             <Card
-             title="嵌入光栅图像 image"
+                title="嵌入光栅图像 image"
                 className="wrap_svg"
                 style={{ width: 500 }}
             >
-            <svg className="inner_svg" height="200">
-            <image 
-            x="90" y="-65" width="128" height="146" transform="rotate(45)"
-            xlinkHref="https://developer.mozilla.org/files/3238/imagedemo.png"/>
-
-            </svg>
-
+                <span>
+                    这里有一些重要的事情需要注意（引用自W3规范文档）：
+                    如果你没有设置x属性或y属性，它们自动被设置为0。
+                    如果你没有设置height属性或width属性，它们自动被设置为0。
+                    如果width属性或height等于0，将不会呈现这个图像。
+                </span>
+                <svg className="inner_svg" height="200">
+                    <image
+                        x="90"
+                        y="-65"
+                        width="128"
+                        height="146"
+                        transform="rotate(45)"
+                        xlinkHref="https://developer.mozilla.org/files/3238/imagedemo.png"
+                    />
+                </svg>
             </Card>
         </div>
     );
