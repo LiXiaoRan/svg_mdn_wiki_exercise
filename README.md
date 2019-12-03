@@ -1,8 +1,7 @@
 效果图
-![效果图](https://raw.githubusercontent.com/LiXiaoRan/PicGoBed/master/img/20191202190018.png)
+![](https://raw.githubusercontent.com/LiXiaoRan/PicGoBed/master/img/20191203110107.png)
+![](https://raw.githubusercontent.com/LiXiaoRan/PicGoBed/master/img/20191203110131.png)
 
-path 绘制的矩形
-![](https://raw.githubusercontent.com/LiXiaoRan/PicGoBed/master/img/20191203095712.png)
 ## 矩形
 矩形
 就像你能联想到的，rect元素会在屏幕上绘制一个矩形 。其实只要6个基本属性就可以控制它在屏幕上的位置和形状。 上面的图例中最先展示了2个矩形，虽然这有点冗余了。右边的那个图形设置了rx和ry属性用来控制圆角。如果没有设置圆角，则默认为0。
