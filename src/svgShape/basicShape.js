@@ -275,8 +275,8 @@ function basicShape() {
                     L 315 10"
                         stroke="black"
                         fill="green"
-                        stroke-width="2"
-                        fill-opacity="0.5"
+                        strokeWidth="2"
+                        fillOpacity="0.5"
                     />
                 </svg>
                 <img
@@ -322,11 +322,11 @@ function basicShape() {
                 style={{ width: 500 }}
             >
                 <span>
-                    stroke-linecap属性的值有三种可能值：
+                    strokeLinecap属性的值有三种可能值：
                     butt用直边结束线段，它是常规做法，线段边界90度垂直于描边的方向、贯穿它的终点。
-                    square的效果差不多，但是会稍微超出实际路径的范围，超出的大小由stroke-width控制。
-                    round表示边框的终点是圆角，圆角的半径也是由stroke-width控制的。
-                    还有一个stroke-linejoin属性，用来控制两条描边线段之间，用什么方式连接。
+                    square的效果差不多，但是会稍微超出实际路径的范围，超出的大小由strokeWidth控制。
+                    round表示边框的终点是圆角，圆角的半径也是由strokeWidth控制的。
+                    还有一个strokeLinejoin属性，用来控制两条描边线段之间，用什么方式连接。
                 </span>
                 <svg
                     width="160"
@@ -340,8 +340,8 @@ function basicShape() {
                         y1="20"
                         y2="20"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="butt"
+                        strokeWidth="20"
+                        strokeLinecap="butt"
                     />
                     <line
                         x1="40"
@@ -349,8 +349,8 @@ function basicShape() {
                         y1="60"
                         y2="60"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="square"
+                        strokeWidth="20"
+                        strokeLinecap="square"
                     />
                     <line
                         x1="40"
@@ -358,12 +358,12 @@ function basicShape() {
                         y1="100"
                         y2="100"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="round"
+                        strokeWidth="20"
+                        strokeLinecap="round"
                     />
                 </svg>
                 <span>
-                    每条折线都是由两个线段连接起来的，连接处的样式由stroke-linejoin属性控制，它有三个可用的值，miter是默认值，表示用方形画笔在连接处形成尖角，round表示用圆角连接，实现平滑效果。最后还有一个值bevel，连接处会形成一个斜接。
+                    每条折线都是由两个线段连接起来的，连接处的样式由strokeLinejoin属性控制，它有三个可用的值，miter是默认值，表示用方形画笔在连接处形成尖角，round表示用圆角连接，实现平滑效果。最后还有一个值bevel，连接处会形成一个斜接。
                 </span>
                 <svg
                     width="160"
@@ -374,31 +374,30 @@ function basicShape() {
                     <polyline
                         points="40 60 80 20 120 60"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="butt"
+                        strokeWidth="20"
+                        strokeLinecap="butt"
                         fill="none"
-                        stroke-linejoin="miter"
+                        strokeLinejoin="miter"
                     />
 
                     <polyline
                         points="40 140 80 100 120 140"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="round"
+                        strokeWidth="20"
+                        strokeLinecap="round"
                         fill="none"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                     />
 
                     <polyline
                         points="40 220 80 180 120 220"
                         stroke="black"
-                        stroke-width="20"
-                        stroke-linecap="square"
+                        strokeWidth="20"
+                        strokeLinecap="square"
                         fill="none"
-                        stroke-linejoin="bevel"
+                        strokeLinejoin="bevel"
                     />
                 </svg>
-
 
                 <svg
                     width="200"
@@ -409,20 +408,227 @@ function basicShape() {
                     <path
                         d="M 10 75 Q 50 10 100 75 T 190 75"
                         stroke="black"
-                        stroke-linecap="round"
-                        stroke-dasharray="5,10,5"
+                        strokeLinecap="round"
+                        strokeDasharray="5,10,5"
                         fill="none"
                     />
                     <path
                         d="M 10 75 L 190 75"
                         stroke="red"
-                        stroke-linecap="round"
-                        stroke-width="1"
-                        stroke-dasharray="5,5"
+                        strokeLinecap="round"
+                        strokeWidth="1"
+                        strokeDasharray="5,5"
                         fill="none"
                     />
                 </svg>
-                <span>stroke-dasharray属性的参数，是一组用逗号分割的数字组成的数列。注意，和path不一样，这里的数字必须用逗号分割（空格会被忽略）。每一组数字，第一个用来表示填色区域的长度，第二个用来表示非填色区域的长度。所以在上面的例子里，第二个路径会先做5个像素单位的填色，紧接着是5个空白单位，然后又是5个单位的填色。如果你想要更复杂的虚线模式，你可以定义更多的数字。第一个例子指定了3个数字，这种情况下，数字会循环两次，形成一个偶数的虚线模式（奇数个循环两次变偶数个）。所以该路径首先渲染5个填色单位，10个空白单位，5个填色单位，然后回头以这3个数字做一次循环，但是这次是创建5个空白单位，10个填色单位，5个空白单位。通过这两次循环得到偶数模式，并将这个偶数模式不断重复。</span>
+                <span>
+                    strokeDasharray属性的参数，是一组用逗号分割的数字组成的数列。注意，和path不一样，这里的数字必须用逗号分割（空格会被忽略）。每一组数字，第一个用来表示填色区域的长度，第二个用来表示非填色区域的长度。所以在上面的例子里，第二个路径会先做5个像素单位的填色，紧接着是5个空白单位，然后又是5个单位的填色。如果你想要更复杂的虚线模式，你可以定义更多的数字。第一个例子指定了3个数字，这种情况下，数字会循环两次，形成一个偶数的虚线模式（奇数个循环两次变偶数个）。所以该路径首先渲染5个填色单位，10个空白单位，5个填色单位，然后回头以这3个数字做一次循环，但是这次是创建5个空白单位，10个填色单位，5个空白单位。通过这两次循环得到偶数模式，并将这个偶数模式不断重复。
+                </span>
+            </Card>
+            <Card title="线性渐变" className="wrap_svg" style={{ width: 500 }}>
+                <span>
+                    线性渐变:要插入一个线性渐变，你需要在SVG文件的defs元素内部，创建一个linearGradient节点。
+                    以上是一个应用了线性渐变的rect元素的示例。线性渐变内部有几个stop
+                    结点，这些结点通过指定位置
+                    的offset（偏移）属性和stop-color（颜色中值）属性来说明在渐变的特定位置上应该是什么颜色；可
+                    以直接指定这两个属性值，也可以通过CSS来指定他们的值，该例子中混合使用了这两种方法。例如：该示
+                    例中指明了渐变开始颜色为红色，到中间位置时变成半透明的黑色，最后变成蓝色。虽然你可以根据需求按
+                    照自己的喜好插入很多中间颜色，但是偏移量应该始终从0%开始（或者0也可以，百分号可以扔掉），到100%
+                    （或1）结束。如果stop设置的位置有重合，将使用XML树中较晚设置的值。而且，类似于填充和描边，你也可
+                    以指定属性stop-opacity来设置某个位置的半透明度（同样，对于FF3你也可以设置rgba值）。
+                </span>
+                <svg
+                    width="120"
+                    height="240"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <linearGradient
+                            id="Gradient2"
+                            x1="0"
+                            x2="0"
+                            y1="0"
+                            y2="1"
+                        >
+                            <stop offset="0%" stopColor="red" />
+                            <stop
+                                offset="50%"
+                                stopColor="black"
+                                stopOpacity="0"
+                            />
+                            <stop offset="100%" stopColor="blue" />
+                        </linearGradient>
+                    </defs>
+
+                    <rect
+                        x="10"
+                        y="120"
+                        rx="15"
+                        ry="15"
+                        width="100"
+                        height="100"
+                        fill="url(#Gradient2)"
+                    />
+                </svg>
+            </Card>
+
+            <Card title="径向渐变" className="wrap_svg" style={{ width: 500 }}>
+                <span>
+                    径向渐变与线性渐变相似，只是它是从一个点开始发散绘制渐变。
+                    中值（stops）的使用方法与之前一致，但是现在这个对象的颜色是中间是红色的，且向着边缘的方向渐渐的变成蓝色。跟线性渐变一样，radialGradient
+                    节点可以有多个属性来描述其位置和方向，但是它更加复杂。径向渐变也是通过两个点来定义其边缘位置，两点中的第一个点定义了渐变结束所围绕的圆环，它需要一个中心点，由cx和cy属性及半径r来定义，通过设置这些点我们可以移动渐变范围并改变它的大小，如上例的第二个rect所展示的。
+                    第二个点被称为焦点，由fx和fy属性定义。第一个点描述了渐变边缘位置，焦点则描述了渐变的中心，如下例。
+                </span>
+                <svg
+                    width="120"
+                    height="240"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <radialGradient id="radialGradient1">
+                            <stop offset="0%" stopColor="red"></stop>
+                            <stop offset="100%" stopColor="green"></stop>
+                        </radialGradient>
+                        <radialGradient
+                            id="RadialGradient2"
+                            cx="0.25"
+                            cy="0.25"
+                            r="0.25"
+                        >
+                            <stop offset="0%" stop-color="red" />
+                            <stop offset="100%" stop-color="blue" />
+                        </radialGradient>
+                    </defs>
+                    <rect
+                        x="10"
+                        y="10"
+                        rx="10"
+                        ry="10"
+                        width="100"
+                        height="100"
+                        fill="url(#radialGradient1)"
+                    ></rect>
+                    <rect
+                        x="10"
+                        y="120"
+                        rx="15"
+                        ry="15"
+                        width="100"
+                        height="100"
+                        fill="url(#RadialGradient2)"
+                    />
+                </svg>
+            </Card>
+
+            <Card
+                title="spreadMethod"
+                className="wrap_svg"
+                style={{ width: 500 }}
+            >
+                <span>线性渐变和径向渐变都需要一些额外的属性用于描述渐变过程，这里我希望额外提及一个spreadMethod属性，该属性控制了当渐变到达终点的行为，但是此时该对象尚未被填充颜色。这个属性可以有三个值：pad、reflect或repeat。Pad就是目前我们见到的效果，即当渐变到达终点时，最终的偏移颜色被用于填充对象剩下的空间。reflect会让渐变一直持续下去，不过它的效果是与渐变本身是相反的，以100%偏移位置的颜色开始，逐渐偏移到0%位置的颜色，然后再回到100%偏移位置的颜色。repeat也会让渐变继续，但是它不会像reflect那样反向渐变，而是跳回到最初的颜色然后继续渐变。</span>
+                <svg
+                    width="220"
+                    height="220"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <radialGradient
+                            id="GradientPad"
+                            cx="0.5"
+                            cy="0.5"
+                            r="0.4"
+                            fx="0.75"
+                            fy="0.75"
+                            spreadMethod="pad"
+                        >
+                            <stop offset="0%" stop-color="red" />
+                            <stop offset="100%" stop-color="blue" />
+                        </radialGradient>
+                        <radialGradient
+                            id="GradientRepeat"
+                            cx="0.5"
+                            cy="0.5"
+                            r="0.4"
+                            fx="0.75"
+                            fy="0.75"
+                            spreadMethod="repeat"
+                        >
+                            <stop offset="0%" stop-color="red" />
+                            <stop offset="100%" stop-color="blue" />
+                        </radialGradient>
+                        <radialGradient
+                            id="GradientReflect"
+                            cx="0.5"
+                            cy="0.5"
+                            r="0.4"
+                            fx="0.75"
+                            fy="0.75"
+                            spreadMethod="reflect"
+                        >
+                            <stop offset="0%" stop-color="red" />
+                            <stop offset="100%" stop-color="blue" />
+                        </radialGradient>
+                    </defs>
+
+                    <rect
+                        x="10"
+                        y="10"
+                        rx="15"
+                        ry="15"
+                        width="100"
+                        height="100"
+                        fill="url(#GradientPad)"
+                    />
+                    <rect
+                        x="10"
+                        y="120"
+                        rx="15"
+                        ry="15"
+                        width="100"
+                        height="100"
+                        fill="url(#GradientRepeat)"
+                    />
+                    <rect
+                        x="120"
+                        y="120"
+                        rx="15"
+                        ry="15"
+                        width="100"
+                        height="100"
+                        fill="url(#GradientReflect)"
+                    />
+
+                    <text
+                        x="15"
+                        y="30"
+                        fill="white"
+                        font-family="sans-serif"
+                        font-size="12pt"
+                    >
+                        Pad
+                    </text>
+                    <text
+                        x="15"
+                        y="140"
+                        fill="white"
+                        font-family="sans-serif"
+                        font-size="12pt"
+                    >
+                        Repeat
+                    </text>
+                    <text
+                        x="125"
+                        y="140"
+                        fill="white"
+                        font-family="sans-serif"
+                        font-size="12pt"
+                    >
+                        Reflect
+                    </text>
+                </svg>
             </Card>
         </div>
     );
